@@ -49,11 +49,9 @@ pipeline{
   
                     
                     
-                    -Dsonar.host.url=${sonar_host_url} \
+                     \
 -Dsonar.login=admin \
- Dsonar.password=password
-                  
-                    '
+ Dsonar.password=password'
 
                     
                 }
