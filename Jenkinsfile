@@ -38,7 +38,17 @@ pipeline{
             }
         }
         
-       
+        stage('Sonar qube') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonarqube-secret-token') {
+                    
+
+                        sh 'gradle sonarqube'
+
+                    
+                }
+            }
+        }
 
        
 
