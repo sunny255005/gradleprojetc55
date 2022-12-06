@@ -38,6 +38,13 @@ pipeline{
             }
         }
         
+        stage('Check Unit Tests') {
+            steps {
+                sh './gradlew test'
+                echo 'Building..'
+            }
+        }
+        
         stage('Sonar qube') {
             steps {
                 withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
