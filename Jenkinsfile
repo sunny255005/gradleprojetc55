@@ -12,7 +12,7 @@ pipeline{
 
     agent any
     tools { 
-        maven 'maven3' 
+       gradle'gradle7' 
        
     } 
    
