@@ -46,12 +46,8 @@ pipeline{
                      sh './gradlew sonarqube \
   -Dsonar.projectKey=test-key-1 \
   -Dsonar.host.url=http://localhost:9000 \
-  
-                    
-                    
-                     \
 -Dsonar.login=admin \
- Dsonar.password=password'
+ -Dsonar.password=password '
 
                     
                 }
