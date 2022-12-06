@@ -40,7 +40,7 @@ pipeline{
         
         stage('Sonar qube') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonarqube-secret-token') {
+                withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
                     
 
                         sh 'gradle sonarqube'
