@@ -43,7 +43,7 @@ pipeline{
                 withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
                     
 
-                        sh 'gradle sonarqube'
+                     sh './gradlew sonarqube'
 
                     
                 }
