@@ -53,7 +53,12 @@ pipeline{
                 }
             }
         }
-
+        
+        stage('Code Coverage with jaccoco'){
+            steps{   
+        jacoco()
+            }
+        }
         stage("Quality Gate") {
             steps {
                 timeout(time: 300, unit: 'SECONDS') {
