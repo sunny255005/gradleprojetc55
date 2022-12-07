@@ -38,7 +38,7 @@ pipeline{
             }
         }
         
-        stage('Check Unit Tests') {
+        stage('Unit Tests') {
             steps {
                 sh './gradlew test'
                 echo 'Building..'
@@ -61,11 +61,7 @@ pipeline{
             }
         }
         
-        stage('Code Coverage with jaccoco'){
-            steps{   
-        jacoco()
-            }
-        }
+       
         stage("Quality Gate") {
             steps {
                 timeout(time: 300, unit: 'SECONDS') {
