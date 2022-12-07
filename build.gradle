@@ -58,3 +58,4 @@ jacocoTestCoverageVerification {
         }
     }
 }
+check.dependsOn jacocoTestCoverageVerification
