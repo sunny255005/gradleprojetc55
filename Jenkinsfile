@@ -45,32 +45,8 @@ pipeline{
             }
         }
         
-        stage('Sonar qube') {
-            steps {
-                withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
-                    
-
-                     sh './gradlew sonarqube \
-  -Dsonar.projectKey=test \
-  -Dsonar.host.url=http://localhost:9000 \
--Dsonar.login=admin \
- -Dsonar.password=password '
-
-                    
-                }
-            }
-        }
         
-       
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 300, unit: 'SECONDS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
         }
-    }
+    
 
 }
