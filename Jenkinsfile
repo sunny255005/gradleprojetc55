@@ -38,12 +38,19 @@ pipeline{
             }
         }
         
-        stage('Check Unit Tests') {
+        stage('Unit Tests') {
             steps {
                 sh './gradlew test'
                 echo 'Building..'
             }
         }
+        
+ stage('Code Coverage with jaccoco'){
+            steps{   
+        jacoco()
+            }
+        }
+        
         
         stage('Sonar qube') {
             steps {
