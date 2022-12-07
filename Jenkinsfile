@@ -46,6 +46,11 @@ pipeline{
         }
         
  
+ stage('Code Coverage with jaccoco'){
+            steps{   
+        jacoco()
+            }
+        }
         
         
         stage('Sonar qube') {
