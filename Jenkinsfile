@@ -43,7 +43,8 @@ pipeline{
                 echo 'Building..'
             }
         }
-        
+         stage 'Test report'
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
  
  stage('Code Coverage with jaccoco'){
             steps{   
