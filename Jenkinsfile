@@ -105,6 +105,7 @@ pipeline{
          echo "Hello,sonarqube continue...!"
             script {
                 def url = sh(returnStdout: true, script: 'git config remote.origin.url').trim()
+                sh 'echo url'
                  withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
                     
 
