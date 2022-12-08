@@ -5,6 +5,8 @@ pipeline{
         PROD_BRANCH = 'master'
         STAGING_BRANCH = 'staging'
         user_env_input = 'Development'
+        is_unit_test_continue='No'
+        is_sonarqube='No'
     }
     
     
@@ -30,32 +32,90 @@ pipeline{
                 }
             
         }
-        stage('Clean Build') {
+        stage('Docker Build') {
             steps {
-                sh 'gradle clean build'
-                echo 'Building..'
+                
+                echo 'docker build..'
             }
         }
         
-        stage('Unit Tests') {
+
+        stage('Confirm for unit tests') {
+            steps {
+                 
+               script{
+                   def is_unit_test_continue_parameter = input(id: 'is_unit_test_continue', message: 'Do you want to invalidate cache in cloudfront?',
+                    parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'No',
+                        description:'Cloudfront choices', name:'invalidate_cf_params', choices: 'Yes\nNo']
+                    ])
+                    
+                   
+                    is_unit_test_continue=is_unit_test_continue_parameter
+
+
+                  
+
+               }}}
+        stage('Unit Tests & Jacoco Reports') {
+            when {
+         expression { is_unit_test_continue == "Yes" }
+     }
+     steps {
+         echo "Hello,unit_test continue...!"
             steps {
                 sh './gradlew test'
-                echo 'Building..'
+                echo 'testing in progess...'
+                 jacoco()
             }
         }
-        stage ('Test report'){
-        steps{
-            sh 'junit '**/target/surefire-reports/TEST-*.xml'
         }
-        }
+        
  
- stage('Code Coverage with jaccoco'){
-            steps{   
-        jacoco()
+//  stage('Code Coverage with jaccoco'){
+//             steps{   
+//         jacoco()
+//             }
+//         }
+        
+        stage('Confirm for Sonarqube Check') {
+            steps {
+                 
+               script{
+                   def is_sonarqube_parameter = input(id: 'is_sonarqube', message: 'Do you want to continue with Sonarqube?',
+                    parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'No',
+                        description:'Sonarqube choices', name:'invalidate_cf_params', choices: 'Yes\nNo']
+                    ])
+                    
+                   
+                   is_sonarqube=is_sonarqube_parameter
+
+
+                  
+
+               }}}
+
+
+                stage('Sonarqube Integeration') {
+            when {
+         expression { is_sonarqube == "Yes" }
+     }
+     steps {
+         echo "Hello,sonarqube continue...!"
+            steps {
+                 withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
+                    
+
+                     sh './gradlew sonarqube \
+  -Dsonar.projectKey=test \
+  -Dsonar.host.url=http://localhost:9000 \
+-Dsonar.login=admin \
+ -Dsonar.password=password '
+
+                    
+                }
             }
         }
-        
-        
+        }
       
         
     }
