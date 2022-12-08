@@ -7,6 +7,7 @@ pipeline{
         user_env_input = 'Development'
         is_unit_test_continue='No'
         is_sonarqube='No'
+        GIT_REPO_NAME = GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
         
     }
     
@@ -111,7 +112,7 @@ pipeline{
 
                      sh './gradlew sonarqube \
   -Dsonar.projectKey=test \
-                     -Dsonar.projectName=url \
+                     -Dsonar.projectName=${GIT_REPO_NAME} \
   -Dsonar.host.url=http://localhost:9000 \
 '
 
