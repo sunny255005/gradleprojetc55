@@ -43,9 +43,10 @@ pipeline{
                 echo 'Building..'
             }
         }
-         stage ('Test report')
+        stage ('Test report'){
         steps{
             sh 'junit '**/target/surefire-reports/TEST-*.xml'
+        }
         }
  
  stage('Code Coverage with jaccoco'){
