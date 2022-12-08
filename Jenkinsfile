@@ -44,9 +44,9 @@ pipeline{
             steps {
                  
                script{
-                   def is_unit_test_continue_parameter = input(id: 'is_unit_test_continue', message: 'Do you want to invalidate cache in cloudfront?',
+                   def is_unit_test_continue_parameter = input(id: 'is_unit_test_continue', message: 'Do you want to go for unit tests?',
                     parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'No',
-                        description:'Cloudfront choices', name:'invalidate_cf_params', choices: 'Yes\nNo']
+                        description:'Unit Test choices', name:'invalidate_cf_params', choices: 'Yes\nNo']
                     ])
                     
                    
@@ -62,7 +62,7 @@ pipeline{
      }
      steps {
          echo "Hello,unit_test continue...!"
-            steps {
+            script {
                 sh './gradlew test'
                 echo 'testing in progess...'
                  jacoco()
@@ -101,7 +101,7 @@ pipeline{
      }
      steps {
          echo "Hello,sonarqube continue...!"
-            steps {
+            script {
                  withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
                     
 
