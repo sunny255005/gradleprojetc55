@@ -7,6 +7,7 @@ pipeline{
         user_env_input = 'Development'
         is_unit_test_continue='No'
         is_sonarqube='No'
+        
     }
     
     
@@ -20,7 +21,8 @@ pipeline{
     stages {
         stage('Which environment to build?') {
             steps {
-            sh 'echo which environment to build'       
+            sh 'echo which environment to build'      
+                
             }
         }
         stage('Confirm') {
@@ -102,11 +104,13 @@ pipeline{
      steps {
          echo "Hello,sonarqube continue...!"
             script {
+                def url = sh(returnStdout: true, script: 'git config remote.origin.url').trim()
                  withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
                     
 
                      sh './gradlew sonarqube \
   -Dsonar.projectKey=hello \
+                     -Dsonar.projectName=url \
   -Dsonar.host.url=http://localhost:9000 \
 '
 
