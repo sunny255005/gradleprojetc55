@@ -114,7 +114,6 @@ pipeline{
   -Dsonar.projectKey=test \
                      -Dsonar.projectName=${GIT_REPO_NAME} \
   -Dsonar.host.url=http://localhost:9000 \
-      -Dsonar.branch.name=$BRANCH_NAME \
 '
 
                     
