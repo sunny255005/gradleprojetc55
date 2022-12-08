@@ -106,7 +106,7 @@ pipeline{
                     
 
                      sh './gradlew sonarqube \
-  -Dsonar.projectKey=test \
+  -Dsonar.projectKey=hello \
   -Dsonar.host.url=http://localhost:9000 \
 '
 
