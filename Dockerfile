@@ -11,7 +11,7 @@ ARG USE_BUILD_CONTAINER=1
 RUN  /app-builder/gradlew clean build 
 # if [ "$USE_BUILD_CONTAINER" = "1" ]; then dependencyReport --stacktrace; fi
 
-
+FROM openjre:11
 
 USER appuser
 WORKDIR /app
