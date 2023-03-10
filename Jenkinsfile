@@ -31,46 +31,24 @@ pipeline{
                 }
             
         }
-        stage('Clean Build') {
+        stage('Docker Build') {
             steps {
-                sh 'gradle clean build'
-                echo 'Building..'
-            }
-        }
-        
-        stage('Unit Tests') {
-            steps {
-                sh './gradlew test'
-                echo 'Building..'
-            }
-        }
-        
-        stage('Sonar qube') {
-            steps {
-                withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
-                    
-
-                     sh './gradlew sonarqube \
-  -Dsonar.projectKey=test \
-  -Dsonar.host.url=http://localhost:9000 \
--Dsonar.login=admin \
- -Dsonar.password=password '
-
-                    
+               
+                echo 'Docker building...'
+                 sh 'chmod +x gradlew'
+              
+                script {
+                    docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ) {
+                        dockerImg =  docker.build("${GIT_COMMIT}/${BUILD_NUMBER}", "./") 
+                    }
                 }
+                
             }
         }
         
        
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 300, unit: 'SECONDS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        
+       
     }
 
 }
