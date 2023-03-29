@@ -70,12 +70,10 @@ pipeline{
 def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23  --format '{{.ID}}' ", returnStdout: true)
  def readContent = readFile 'build.txt'
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
-              readContent = readFile 'build.txt'
-            
            
             
-            sh 'echo ${readContent}';
-            
+            def list = readFile("${workspace}/build.txt").readLines()
+            sh 'echo ${list}'
            
             
             
