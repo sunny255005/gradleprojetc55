@@ -57,14 +57,23 @@ pipeline{
         stage('Printing docker images') {
     steps {
         script {
-           
-            def listCatalog = sh script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true
-            def arrayExample=[]
-            listCatalog["IMAGE"].split().each {
-              arrayExample << it
-                echo "${it}"
-            }
-            echo "${arrayExample}"
+//            def map = [IMAGE:""]
+//             def listCatalog = sh script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true
+//             def arrayExample=[]
+            
+//             listCatalog.split().each {
+//               arrayExample << it
+//                 echo "${it}"
+//             }
+//             echo "${arrayExample}"
+            
+            def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true).trim()
+//DEBUG
+echo "FILES_LIST : ${FILES_LIST}"
+//PARSING
+for(String ele : FILES_LIST.split("\\r?\\n")){ 
+   println ">>>${ele}<<<"     
+}
         }
     }
 }
