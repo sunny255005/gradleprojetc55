@@ -72,7 +72,7 @@ def readContent = readFile 'build.txt'
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             
              def whole_file_data = readFile(file: 'build.txt')
-            file.withReader { reader ->
+            whole_file_data.withReader { reader ->
           while ((line = reader.readLine()) != null) {
             println "${line}"
             noOfLines++
