@@ -40,7 +40,7 @@ pipeline{
                 //https://index.docker.io/v1/
               
                 script {
-                    docker.withRegistry( 'https://hub.docker.com/', registryCredential ) {
+                    docker.withRegistry( 'https://hub.docker.com', registryCredential ) {
                         dockerImg =  docker.build("${GIT_COMMIT}/${BUILD_NUMBER}", "./") 
                     }
                 }
