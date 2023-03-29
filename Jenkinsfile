@@ -69,11 +69,10 @@ pipeline{
             
             def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true).trim()
 //DEBUG
-echo "FILES_LIST : ${FILES_LIST}"
+echo "${FILES_LIST}>>nice.txt"
+sh 'awk -F , '{print $1}' nice.txt'
 //PARSING
-for(String ele : FILES_LIST.split("IMAGE")){ 
-   println ">>>${ele}<<<"     
-}
+
         }
     }
 }
