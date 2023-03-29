@@ -67,7 +67,7 @@ pipeline{
 //             }
 //             echo "${arrayExample}"
             
-def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23  --format '{{.IMAGE}}'" | head -1", returnStdout: true)
+def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23  --format '{{.IMAGE}}' ", returnStdout: true)
 def readContent = readFile 'build.txt'
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             
