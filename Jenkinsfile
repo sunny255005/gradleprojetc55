@@ -71,13 +71,12 @@ def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a
 def readContent = readFile 'build.txt'
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             
-             def whole_file_data = readFile(file: 'build.txt')
-            whole_file_data.withReader { reader ->
-          while ((line = reader.readLine()) != null) {
-            println "${line}"
-            noOfLines++
-          }
-        }
+            String[] mydata = readFile("${WORKSPACE}/build.txt")   
+            mydata.each {
+                
+               sh 'echo docker rmi -f '
+        
+            }
             
             
             //sh'cut -d, -f1 build.txt'
