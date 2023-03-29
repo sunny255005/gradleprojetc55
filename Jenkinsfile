@@ -74,8 +74,8 @@ writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             String[] mydata = readFile("${WORKSPACE}/build.txt")   
             mydata.each {
                 item ->
-        sh "echo docker rmi -f ${item}"
-              
+        //sh "echo docker rmi -f ${item}"
+                sh 'echo ${item}'    
         
             }
             
