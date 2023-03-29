@@ -48,6 +48,18 @@ pipeline{
             }
         }
         
+        stage('Printing docker images') {
+    steps {
+        script {
+            def listCatalog = sh script: "ls ", returnStdout: true
+            def arrayExample=[]
+            listCatalog.split().each {
+              arrayExample << it
+            }
+            echo "${arrayExample}"
+        }
+    }
+}
        
         
        
