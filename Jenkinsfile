@@ -71,7 +71,7 @@ pipeline{
 //DEBUG
 echo "FILES_LIST : ${FILES_LIST}"
 //PARSING
-for(String ele : FILES_LIST.split("          ")){ 
+for(String ele : FILES_LIST.split("IMAGE")){ 
    println ">>>${ele}<<<"     
 }
         }
