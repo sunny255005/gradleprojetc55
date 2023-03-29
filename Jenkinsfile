@@ -68,24 +68,23 @@ pipeline{
 //             echo "${arrayExample}"
             
 def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23  --format '{{.ID}}' ", returnStdout: true)
-def readContent = readFile 'build.txt'
+
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             
-            def  mydata = readFile("${WORKSPACE}/build.txt") 
-            sh 'echo ${mydata}';
+            def readContent = readFile 'build.txt'
             
-//             mydata.each {
-//                 item ->
-       
-//                 sh ' echo d ${item}'    
-        
-//             }
+            sh 'echo ${readContent}';
             
-//             def lines = file.readLines()
-//             sh 'echo ${lines}';
-// lines.each { String line ->
-//   println line
-// }
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
             //sh'cut -d, -f1 build.txt'
 //echo "${FILES_LIST}>>nice.txt"
             //sh "echo ${FILES_LIST} >> build.txt"
