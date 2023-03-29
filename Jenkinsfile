@@ -72,11 +72,12 @@ def readContent = readFile 'build.txt'
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             
              def whole_file_data = readFile(file: 'build.txt')
-            whole_file_data.eachLine { String line ->
-             
-              println("line:${line}")
-              
-            }
+            file.withReader { reader ->
+          while ((line = reader.readLine()) != null) {
+            println "${line}"
+            noOfLines++
+          }
+        }
             
             
             //sh'cut -d, -f1 build.txt'
