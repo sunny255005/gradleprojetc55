@@ -46,6 +46,8 @@ pipeline{
 //                                 println container.id
 //                                 println container.name
 //                             }
+                        
+                     
                     }
                 }
                 
@@ -55,8 +57,8 @@ pipeline{
         stage('Printing docker images') {
     steps {
         script {
-            sh "docker inspect -f '{{ .Id }}' ${image.id}"
-            def listCatalog = sh script: "docker images ", returnStdout: true
+           
+            def listCatalog = sh script: "docker history ${GIT_COMMIT}/${BUILD_NUMBER} ", returnStdout: true
             def arrayExample=[]
             listCatalog.split().each {
               arrayExample << it
