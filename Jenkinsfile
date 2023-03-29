@@ -60,7 +60,7 @@ pipeline{
            
             def listCatalog = sh script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true
             def arrayExample=[]
-            listCatalog.split().each {
+            listCatalog["IMAGE"].split().each {
               arrayExample << it
                 echo "${it}"
             }
