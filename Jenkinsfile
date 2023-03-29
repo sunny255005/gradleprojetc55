@@ -71,7 +71,7 @@ pipeline{
 //DEBUG
 //echo "${FILES_LIST}>>nice.txt"
             sh "echo ${FILES_LIST} >> build.txt"
-sh 'awk -F , '{print $1}' build.txt'
+//sh 'awk -F , '{print $1}' build.txt'
 //PARSING
 
         }
