@@ -80,7 +80,7 @@ writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             }
             
             def lines = file.readLines()
-
+            sh 'echo ${lines}';
 lines.each { String line ->
   println line
 }
