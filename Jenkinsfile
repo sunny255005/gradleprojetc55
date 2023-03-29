@@ -37,9 +37,10 @@ pipeline{
                
                 echo 'Docker building...'
                  sh 'chmod +x gradlew'
+                //https://index.docker.io/v1/
               
                 script {
-                    docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ) {
+                    docker.withRegistry( 'https://hub.docker.com/', registryCredential ) {
                         dockerImg =  docker.build("${GIT_COMMIT}/${BUILD_NUMBER}", "./") 
                     }
                 }
