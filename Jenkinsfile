@@ -42,10 +42,10 @@ pipeline{
                 script {
                     docker.withRegistry( ' https://index.docker.io', registryCredential ) {
                         dockerImg =  docker.build("${GIT_COMMIT}/${BUILD_NUMBER}", "./") 
-                         docker.image("${GIT_COMMIT}/${BUILD_NUMBER}").withRun() { container ->
-                                println container.id
-                                println container.name
-                            }
+//                          docker.image("${GIT_COMMIT}/${BUILD_NUMBER}").withRun() { container ->
+//                                 println container.id
+//                                 println container.name
+//                             }
                     }
                 }
                 
@@ -55,6 +55,7 @@ pipeline{
         stage('Printing docker images') {
     steps {
         script {
+            sh "docker inspect -f '{{ .Id }}' ${image.id}"
             def listCatalog = sh script: "docker images ", returnStdout: true
             def arrayExample=[]
             listCatalog.split().each {
