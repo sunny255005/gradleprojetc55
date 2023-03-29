@@ -71,7 +71,9 @@ def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a
 def readContent = readFile 'build.txt'
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             
-            String[] mydata = readFile("${WORKSPACE}/build.txt")   
+            def  mydata = readFile("${WORKSPACE}/build.txt") 
+            sh 'echo ${mydata}';
+            
             mydata.each {
                 item ->
        
