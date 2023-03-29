@@ -74,12 +74,12 @@ writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             def  mydata = readFile("${WORKSPACE}/build.txt") 
             sh 'echo ${mydata}';
             
-            mydata.each {
-                item ->
+//             mydata.each {
+//                 item ->
        
-                sh ' echo d ${item}'    
+//                 sh ' echo d ${item}'    
         
-            }
+//             }
             
 //             def lines = file.readLines()
 //             sh 'echo ${lines}';
