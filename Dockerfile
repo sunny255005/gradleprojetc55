@@ -15,7 +15,7 @@ RUN  /app-builder/gradlew clean build
 USER appuser
 WORKDIR /app
 
-COPY --from=builder /app-builder/build/libs/
+COPY ..
 
 CMD [ "java", "-jar", "app.jar" ]
 
