@@ -58,7 +58,7 @@ pipeline{
     steps {
         script {
            
-            def listCatalog = sh script: "docker history ${GIT_COMMIT}/${BUILD_NUMBER} ", returnStdout: true
+            def listCatalog = sh script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true
             def arrayExample=[]
             listCatalog.split().each {
               arrayExample << it
