@@ -74,16 +74,16 @@ writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             String[] mydata = readFile("${WORKSPACE}/build.txt")   
             mydata.each {
                 item ->
-        //sh "echo docker rmi -f ${item}"
-                sh 'echo ${item}'    
+       
+                sh ' echo d ${item}'    
         
             }
             
-            def lines = file.readLines()
-            sh 'echo ${lines}';
-lines.each { String line ->
-  println line
-}
+//             def lines = file.readLines()
+//             sh 'echo ${lines}';
+// lines.each { String line ->
+//   println line
+// }
             //sh'cut -d, -f1 build.txt'
 //echo "${FILES_LIST}>>nice.txt"
             //sh "echo ${FILES_LIST} >> build.txt"
