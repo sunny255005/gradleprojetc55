@@ -32,27 +32,27 @@ pipeline{
                 }
             
         }
-        stage('Docker Build') {
-            steps {
+//         stage('Docker Build') {
+//             steps {
                
-                echo 'Docker building...'
-                 sh 'chmod +x gradlew'
-                //https://index.docker.io/v1/
+//                 echo 'Docker building...'
+//                  sh 'chmod +x gradlew'
+//                 //https://index.docker.io/v1/
               
-                script {
-                    docker.withRegistry( ' https://index.docker.io', registryCredential ) {
-                        dockerImg =  docker.build("${GIT_COMMIT}/${BUILD_NUMBER}", "./") 
-//                          docker.image("${GIT_COMMIT}/${BUILD_NUMBER}").withRun() { container ->
-//                                 println container.id
-//                                 println container.name
-//                             }
+//                 script {
+//                     docker.withRegistry( ' https://index.docker.io', registryCredential ) {
+//                         dockerImg =  docker.build("${GIT_COMMIT}/${BUILD_NUMBER}", "./") 
+// //                          docker.image("${GIT_COMMIT}/${BUILD_NUMBER}").withRun() { container ->
+// //                                 println container.id
+// //                                 println container.name
+// //                             }
                         
                      
-                    }
-                }
+//                     }
+//                 }
                 
-            }
-        }
+//             }
+//         }
         
         stage('Printing docker images') {
     steps {
@@ -62,6 +62,7 @@ pipeline{
             def arrayExample=[]
             listCatalog.split().each {
               arrayExample << it
+                echo "${it}"
             }
             echo "${arrayExample}"
         }
