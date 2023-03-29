@@ -79,7 +79,11 @@ writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
         
             }
             
-            
+            def lines = file.readLines()
+
+lines.each { String line ->
+  println line
+}
             //sh'cut -d, -f1 build.txt'
 //echo "${FILES_LIST}>>nice.txt"
             //sh "echo ${FILES_LIST} >> build.txt"
