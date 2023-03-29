@@ -70,7 +70,7 @@ pipeline{
             def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true).trim()
 //DEBUG
 //echo "${FILES_LIST}>>nice.txt"
-            sh "${FILES_LIST} >> build.txt"
+            sh "echo ${FILES_LIST} >> build.txt"
 sh 'awk -F , '{print $1}' build.txt'
 //PARSING
 
