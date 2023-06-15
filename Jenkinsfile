@@ -81,7 +81,15 @@ lines.each { String line ->
 }
             
             
-            
+            //  def listOfFolder = sh script: "ls $WORKSPACE/a", returnStdout: true
+
+    def myArray=[]
+    FILES_LIST.split().each { 
+        myArray << it
+    }
+    
+    print myArray
+    print myArray.size()
             
             
             
