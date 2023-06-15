@@ -74,10 +74,11 @@ writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
             
             def file = readFile("${workspace}/build.txt")
           //  sh 'echo dd ${list}'
-           file.eachLine { String line ->
+        def lines = file.readLines()
+
+lines.each { String line ->
   println line
 }
-            
             
             
             
