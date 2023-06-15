@@ -72,9 +72,11 @@ def  FILES_LIST = sh (script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
            
             
-            def list = readFile("${workspace}/build.txt").readLines().get[3]
-            sh 'echo dd ${list}'
-           
+            def file = readFile("${workspace}/build.txt").readLines().get[3]
+          //  sh 'echo dd ${list}'
+           file.eachLine { String line ->
+  println line
+}
             
             
             
