@@ -68,7 +68,7 @@ pipeline{
 //             }
 //             echo "${arrayExample}"
             
-def  FILES_LIST = sh (script: "docker history ${GIT_REPO_NAME}:${GIT_COMMIT}:latest  --format '{{.ID}}' ", returnStdout: true)
+def  FILES_LIST = sh (script: "docker history ${GIT_REPO_NAME}/${GIT_COMMIT}:latest  --format '{{.ID}}' ", returnStdout: true)
  def readContent = readFile 'build.txt'
 writeFile file: 'build.txt', text: readContent+"${FILES_LIST}"
            
