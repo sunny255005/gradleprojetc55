@@ -59,7 +59,7 @@ pipeline{
     steps {
         script {
 //            def map = [IMAGE:""]
-//             def listCatalog = sh script: "docker history ${GIT_REPO_NAME}/${GIT_COMMIT}", returnStdout: true
+//             def listCatalog = sh script: "docker history ${GIT_REPO_NAME}/${GIT_COMMIT}:latest", returnStdout: true
 //             def arrayExample=[]
             
 //             listCatalog.split().each {
