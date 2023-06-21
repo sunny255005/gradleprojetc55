@@ -42,7 +42,7 @@ pipeline{
               
                 script {
                     docker.withRegistry( ' https://index.docker.io', registryCredential ) {
-                        dockerImg =  docker.build("${GIT_COMMIT}/${BUILD_NUMBER}", "./") 
+                        dockerImg =  docker.build("${GIT_REPO_NAME}/${GIT_COMMIT}", "./") 
 //                          docker.image("${GIT_COMMIT}/${BUILD_NUMBER}").withRun() { container ->
 //                                 println container.id
 //                                 println container.name
@@ -59,7 +59,7 @@ pipeline{
     steps {
         script {
 //            def map = [IMAGE:""]
-//             def listCatalog = sh script: "docker history 6998c176eb3fb4e95ff2c1f0981428124a61bdbf/23 ", returnStdout: true
+//             def listCatalog = sh script: "docker history ${GIT_REPO_NAME}/${GIT_COMMIT}", returnStdout: true
 //             def arrayExample=[]
             
 //             listCatalog.split().each {
