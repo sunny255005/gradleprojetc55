@@ -93,7 +93,7 @@ lines.each { String line ->
     print myArray.size()
             
             for (i in myArray) {
-                sh "docker rmi -f ${i}:latest"
+                sh "docker rmi -f ${i}:latest || true"
   println "now got ${i}"
 }
             
