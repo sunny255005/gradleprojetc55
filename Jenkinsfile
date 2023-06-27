@@ -93,7 +93,7 @@ lines.each { String line ->
     print myArray.size()
             
             for (i in myArray) {
-                sh "docker image rm ${i}"
+                sh "docker rmi -f ${i}"
   println "now got ${i}"
 }
             
