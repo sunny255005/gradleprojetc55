@@ -47,7 +47,7 @@ pipeline{
 
                     if(user_env_input=="Testing")
                     {
-                        echo hello
+                        echo 'hello'
                     }
                     else{
                          currentBuild.result = 'ABORTED'
