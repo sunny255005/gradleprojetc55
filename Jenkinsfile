@@ -35,12 +35,23 @@ pipeline{
         }
         stage('Docker Build') {
             steps {
-               
+
+                    
+
+                
                 echo 'Docker building...'
                  sh 'chmod +x gradlew'
                 //https://index.docker.io/v1/
               
                 script {
+
+                    if(user_env_input=="Testing")
+                    {
+                        echo hello
+                    }
+                    else{
+                         currentBuild.result = 'ABORTED'
+                    }
                     docker.withRegistry( ' https://index.docker.io', registryCredential ) {
                         dockerImg =  docker.build("${GIT_REPO_NAME}/${GIT_COMMIT}", "./") 
 //                          docker.image("${GIT_COMMIT}/${BUILD_NUMBER}").withRun() { container ->
